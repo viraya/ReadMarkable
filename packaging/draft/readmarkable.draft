@@ -1,0 +1,6 @@
+[General]
+name=ReadMarkable
+desc=EPUB Reader
+call=/home/root/.local/share/readmarkable/readmarkable -platform epaper
+term=killall -q readmarkable; systemctl start xochitl
+imgFile=readmarkable

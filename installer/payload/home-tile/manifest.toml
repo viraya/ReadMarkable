@@ -1,0 +1,27 @@
+# manifest.toml  -  firmware → .qmd filename lookup for the home-tile phase.
+#
+# install-home-tile.sh reads /etc/version on-device to get the device
+# firmware, matches against the [[firmware]] entries below, and copies
+# the matching .qmd + the shared icon .rcc to
+# /home/root/xovi/exthome/qt-resource-rebuilder/ at install time.
+#
+# If no entry matches the device's firmware, install-home-tile.sh exits
+# 0 with a log line (silent degrade per spec Q2). The user sees only
+# AppLoad's drawer tile  -  the ReadMarkable app is still installed and
+# launchable from the AppLoad drawer; we just skip adding the direct-
+# launch tile on unsupported firmwares.
+#
+# Adding support for a new firmware: (a) on-device QML-investigation to
+# confirm AFFECT [[4911547370760691430]] target still maps to the
+# Sidebar tile grid on that firmware, (b) commit a new
+# readmarkable-<firmware>.qmd alongside this file, (c) add a firmware
+# entry here.
+#
+# Icon .rcc is firmware-independent so lives outside the [[firmware]]
+# table.
+
+icon_png = "readmarkable-icon.png"
+
+[[firmware]]
+version = "3.26.0.68"
+qmd     = "readmarkable-3.26.0.68.qmd"

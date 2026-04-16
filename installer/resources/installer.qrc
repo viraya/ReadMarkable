@@ -1,0 +1,29 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/config">
+        <file alias="pinned-versions.toml">../config/pinned-versions.toml</file>
+    </qresource>
+    <qresource prefix="/payload">
+        <file alias="xovi-aarch64.tar.gz">../payload/xovi-aarch64.tar.gz</file>
+        <file alias="xovi-aarch64.tar.gz.sha256">../payload/xovi-aarch64.tar.gz.sha256</file>
+        <file alias="appload-aarch64.zip">../payload/appload-aarch64.zip</file>
+        <file alias="appload-aarch64.zip.sha256">../payload/appload-aarch64.zip.sha256</file>
+    </qresource>
+    <qresource prefix="/on-device">
+        <file alias="detect-state.sh">../on-device/detect-state.sh</file>
+        <file alias="install-xovi.sh">../on-device/install-xovi.sh</file>
+        <file alias="install-appload.sh">../on-device/install-appload.sh</file>
+        <file alias="install-persistence.sh">../on-device/install-persistence.sh</file>
+        <file alias="install-readmarkable.sh">../on-device/install-readmarkable.sh</file>
+        <file alias="install-home-tile.sh">../on-device/install-home-tile.sh</file>
+        <file alias="rebuild-hashtab.sh">../on-device/rebuild-hashtab.sh</file>
+        <file alias="uninstall.sh">../on-device/uninstall.sh</file>
+        <file alias="xovi-activate.service">../on-device/xovi-activate.service</file>
+        <file alias="xovi-activate.sh">../on-device/xovi-activate.sh</file>
+    </qresource>
+    <qresource prefix="/home-tile">
+        <file alias="manifest.toml">../payload/home-tile/manifest.toml</file>
+        <file alias="readmarkable-icon.png">../payload/home-tile/readmarkable-icon.png</file>
+        <file alias="readmarkable-3.26.0.68.qmd">../payload/home-tile/readmarkable-3.26.0.68.qmd</file>
+    </qresource>
+</RCC>

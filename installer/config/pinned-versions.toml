@@ -1,0 +1,32 @@
+# pinned-versions.toml  -  single source of truth for bundled and fetched payload.
+#
+# `tag` fields use whatever versioning scheme upstream uses:
+#   - rm-xovi-extensions tags as vNN-DDMMYYYY (date-suffixed; lexical comparison works)
+#   - rm-appload tags as vX.Y.Z (semver)
+#   - readmarkable tags as vX.Y.Z (semver)
+#
+# To bump: run installer/scripts/refresh-pins.sh, review the diff, commit.
+
+[xovi]
+# rm-xovi-extensions release. Bundled into installer Qt resources at build time.
+tag    = "v18-23032026"
+url    = "https://github.com/asivery/rm-xovi-extensions/releases/download/v18-23032026/xovi-aarch64.tar.gz"
+sha256 = "d2c0cc10cecd5d1cad0a77ba3d9676995dc17c0c21a3c99151ca35a12bb78f44"
+# X1 gate: if device's /home/root/xovi/.install-tag is lexically less than this,
+# treat as too-old and abort with "please update XOVI" message.
+# Date-suffixed tags compare correctly as strings.
+minimum_compatible_tag = "v17-01012026"
+
+[appload]
+# rm-appload release. Bundled into installer Qt resources.
+tag    = "v0.5.0"
+url    = "https://github.com/asivery/rm-appload/releases/download/v0.5.0/appload-aarch64.zip"
+sha256 = "efbda8d8f06fcf1b51e91d9833387bd1443a28823e034e65df02357c77b6719c"
+
+[readmarkable]
+# Fetched at runtime from this repo's GitHub Releases.
+# {tag} is replaced with whatever the latest release exposes via GH API.
+url_template = "https://github.com/viraya/ReadMarkable/releases/download/{tag}/readmarkable-{tag}-chiappa.tar.gz"
+sha256_url_template = "{url}.sha256"
+# Refuse to install older than this (also the installer's own version baseline).
+min_version = "1.2.0"

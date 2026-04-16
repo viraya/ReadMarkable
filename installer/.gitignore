@@ -1,0 +1,12 @@
+build/
+# The top-level payload/ staging directory holds fetched artifacts (XOVI
+# tarball + AppLoad zip) that are NOT source-controlled, plus source-
+# controlled sub-bundles like home-tile/ that ARE. Ignore the fetched
+# blobs, whitelist the source-controlled dirs explicitly.
+/payload/*
+!/payload/home-tile/
+!/payload/home-tile/**
+.env
+*.log
+*.user
+CMakeUserPresets.json

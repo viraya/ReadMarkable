@@ -1,0 +1,28 @@
+[Unit]
+Description=ReadMarkable: activate XOVI once /home is mounted
+Documentation=https://github.com/viraya/ReadMarkable
+# Wants= (NOT Requires=) keeps this failure-isolated from xochitl's startup.
+# Requires= from this unit to home.mount would cascade: home.mount waits for
+# PIN, PIN UI is xochitl, so anything that blocks on home.mount can deadlock
+# boot. See 2026-04-15 r2 incident  -  required factory recovery.
+Wants=home.mount
+After=home.mount xochitl.service
+ConditionPathExists=/home/root/xovi/start
+# Per-boot sentinel. /run is tmpfs → cleared on reboot.
+ConditionPathExists=!/run/xovi-activated
+
+[Service]
+Type=oneshot
+# Helper staged to /home/root/xovi-activate/ by install-persistence.sh (r4).
+# Living in /home/root survives OTAs; calling it via ExecStart means reading
+# the activation logic with `cat` is trivial on-device.
+ExecStart=/home/root/xovi-activate/xovi-activate.sh
+RemainAfterExit=yes
+TimeoutStartSec=30
+# If xovi/start exits non-zero we still consider persistence "fine" and
+# don't propagate failure. xochitl is already running without XOVI; the
+# user can re-try via the installer or reboot.
+SuccessExitStatus=0 1
+
+[Install]
+WantedBy=multi-user.target
