@@ -1,0 +1,36 @@
+# Tier-2 integration test harness: simulates a reMarkable Paper Pro Move
+# (chiappa) closely enough to run our on-device scripts end-to-end without
+# risking real hardware.
+#
+# Spin up:  docker compose up -d
+# Tear down: docker compose down -v
+# SSH into:  ssh -p 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@localhost
+#
+# privileged: true is required because the container's entrypoint actually
+# mounts an overlayfs on /etc (CAP_SYS_ADMIN + mount ns write) to mirror
+# chiappa's /etc topology. Without this, the overlay-setup step fails and
+# the r4 persistence test path can't be exercised.
+
+services:
+  mock-chiappa:
+    build: ./mock-device
+    container_name: rm-mock-chiappa
+    hostname: imx93-chiappa
+    ports:
+      - "2222:22"
+    privileged: true
+    environment:
+      # Knobs for scenario fixtures, the entrypoint reads these.
+      SCENARIO: ${SCENARIO:-stock}            # stock | xovi-installed | rm-installed-xovi-compat | rm-installed-xovi-old
+      DEVICE_MODEL: ${DEVICE_MODEL:-reMarkable Chiappa}
+      FIRMWARE: ${FIRMWARE:-20260310084634}
+      ROOT_PASSWORD: ${ROOT_PASSWORD:-testpass}
+      # Set RM_MOCK_OVERLAY=0 to run with plain-ext4 /etc (legacy behaviour
+      # before the r4 overlay was added). Useful for bisecting a failure to
+      # "is this r4-overlay-specific?" questions.
+      RM_MOCK_OVERLAY: ${RM_MOCK_OVERLAY:-1}
+    # Host mount for easy fixture editing + payload drops during tests.
+    volumes:
+      - ../../on-device:/mock/on-device:ro
+      - ../../payload:/mock/payload:ro
+      - ./mock-device/stubs:/mock/stubs:ro

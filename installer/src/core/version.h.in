@@ -1,0 +1,8 @@
+#pragma once
+
+namespace rm::installer {
+
+constexpr const char* kAppVersion = "@PROJECT_VERSION@";
+constexpr const char* kAppName    = "ReadMarkable Installer";
+
+}  // namespace rm::installer

@@ -1,0 +1,68 @@
+; readmarkable-3.26.0.68.qmd — adds a ReadMarkable tile to chiappa's
+; home-screen side drawer, next to AppLoad's tile.
+;
+; Validated on-device 2026-04-15 (chiappa firmware 3.26.0.68, XOVI v18,
+; AppLoad v0.5.0). See docs/specs/2026-04-15-home-tile-design.md.
+;
+; Implements Q1-relaxed variant (Option B from spec): on-disk .qmd
+; cannot REMOVE AppLoad's tile (rules registered on-disk-first apply
+; BEFORE AppLoad's runtime-API-registered insert, so our REMOVE would
+; no-op). This file INSERTs a sibling tile and leaves AppLoad's tile
+; alone. AppLoad's drawer therefore remains usable for any other
+; installed XOVI apps.
+;
+; Structure: mirrors upstream asivery/rm-appload/xovi/template/appload.qmd
+; AFFECT [[4911547370760691430]] block, with the id, label, icon path
+; and tap-handler body substituted.
+;
+; Icon: qrc:/ark/icons/my_files (a stock xochitl "My Files" glyph).
+; Empirical findings on chiappa fw 3.26.0.68: the tile element type that
+; AFFECT [[4911547370760691430]] INSERTs accepts qrc:/* URLs but rejects
+; every other URL scheme we tried —
+;   - qrc:/readmarkable/icon.png via an injected .rcc: rendered as a black
+;     square; qt-resource-rebuilder iterates the exthome dir but does NOT
+;     register sibling .rcc files on this build despite the asivery README
+;     listing them as supported (only .qmd files are picked up).
+;   - file:///<path>: xochitl logged "Could not find <url>" even when the
+;     file existed with world-readable permissions.
+;   - data:image/png;base64,...: same "Could not find" error. The tile's
+;     source-resolver apparently ignores non-qrc schemes entirely.
+; Stock xochitl resources work fine, so we borrow one. my_files is a
+; reMarkable-styled folder glyph — close enough to "library" that it's
+; visually meaningful next to AppLoad's tile. A bespoke ReadMarkable
+; icon needs a working qrc:/ injection route (via a patched .qrr or a
+; .so-registered runtime resource); deferred until we crack that.
+;
+; Tap handler: calls AppLoad's own launcher with id "external::readmarkable"
+; (external-app id prefix is set in rm-appload library.cpp via
+; `externalApplications[QString("external::") + entry->d_name] = app;`).
+; Reuses all of AppLoad's launch plumbing (scope escape, env setup,
+; manifest-driven spawn) while skipping the drawer UI.
+
+AFFECT [[4911547370760691430]]
+    IMPORT net.asivery.AppLoad [[180922.180921]]
+    TRAVERSE [[3819512207256720568]] > [[14125623155555875541]]#[[15885405667098360701]]
+        LOCATE AFTER [[3819512207256720568]]#[[4073320026945606142]]
+        INSERT {
+            ~&16385778650434842232&~ {
+                ~&5972374&~: openReadMarkable
+                ~&8399878573055752961&~: "openReadMarkable"
+                ~&214642559243&~: ~&6504222003&~("ReadMarkable")
+                ~&8399601734642709923&~: "qrc:/ark/icons/my_files"
+                ~&7082453764421&~: ~&214625660372&~
+                ~&233726547792244&~: ~&6504329801&~
+                ~&254542236275632405&~: {
+                    AppLoadLauncher.requestLaunch("external::readmarkable", [], {}, false);
+                }
+                ~&7081629735527&~.~&17520348323745447649&~: ~&7082020628281&~.~&15061686673205541622&~
+                ~&7081629735527&~.~&7797818826744279624&~: ~&7083038346995&~.~&214646099849&~
+                ~&11921478716705041271&~: ~&6504254477&~
+            }
+        }
+    END TRAVERSE
+    TRAVERSE [[3819512207256720568]]#[[6504254477]]
+        REBUILD [[15578034235503008618]]
+            LOCATE AFTER STREAM \~&16045040163728568448&~\ INSERT STREAM \, openReadMarkable\
+        END REBUILD
+    END TRAVERSE
+END AFFECT

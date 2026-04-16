@@ -1,0 +1,6 @@
+[submodule "thirdparty/crengine"]
+	path = thirdparty/crengine
+	url = https://github.com/koreader/crengine.git
+[submodule "thirdparty/quazip"]
+	path = thirdparty/quazip
+	url = https://github.com/stachenov/quazip.git

@@ -1,0 +1,11 @@
+{
+  "name": "ReadMarkable",
+  "application": "/home/root/.local/share/readmarkable/readmarkable",
+  "workingDirectory": "/home/root/.local/share/readmarkable",
+  "aspectRatio": "move",
+  "disablesWindowedMode": true,
+  "args": ["-platform", "epaper"],
+  "environment": {
+    "LANG": "en_US.UTF-8"
+  }
+}

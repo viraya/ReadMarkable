@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Camera body -->
+  <path d="M8 18 L18 18 L22 12 L42 12 L46 18 L56 18 Q60 18 60 22 L60 50 Q60 54 56 54 L8 54 Q4 54 4 50 L4 22 Q4 18 8 18 Z" fill="none" stroke="#000000" stroke-width="3"/>
+  <!-- Lens -->
+  <circle cx="32" cy="36" r="10" fill="none" stroke="#000000" stroke-width="3"/>
+  <!-- Viewfinder dot -->
+  <rect x="48" y="22" width="6" height="4" fill="#000000"/>
+</svg>
