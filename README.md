@@ -1,3 +1,4 @@
+
 # ReadMarkable
 
 A native EPUB reader for the **reMarkable Paper Pro Move** (chiappa). Built with the Chiappa SDK.
@@ -23,20 +24,20 @@ Reading EPUBs on a reMarkable shouldn't mean waiting 20 seconds for a font size 
 
 Installer process
 
-<img width="289" height="221" alt="installer1" src="https://github.com/user-attachments/assets/b20fe04c-0700-4b54-b374-0c449a1dc794" />
-<img width="289" height="221" alt="installer2" src="https://github.com/user-attachments/assets/da9a405b-a0e6-4ebb-9a4f-fb7619fbe642" />
-<img width="289" height="221" alt="installer3" src="https://github.com/user-attachments/assets/cb1191d1-f9d2-414a-af02-e5c29a1a58b2" />
-<img width="289" height="221" alt="installer4" src="https://github.com/user-attachments/assets/8beaa9fc-16ba-498c-88d5-88bff7edc2ac" />
-<img width="289" height="221" alt="installer5" src="https://github.com/user-attachments/assets/fabf1d18-7354-4d7b-b6f0-2b9b97379e88" />
-<img width="289" height="221" alt="installer6" src="https://github.com/user-attachments/assets/50fff73f-fa61-4127-8e25-7f018b9c632d" />
+<img width="289" height="221" alt="installer1" src="https://github.com/user-attachments/assets/85abf395-9432-4dc9-9a6c-08f269c9cdcc" />
+<img width="289" height="221" alt="installer2" src="https://github.com/user-attachments/assets/e37725a1-d274-4f77-aa20-393ebe3f7844" />
+<img width="289" height="221" alt="installer3" src="https://github.com/user-attachments/assets/af82b4f8-5d8f-4832-bcd2-f1dacc5637cb" />
+<img width="289" height="221" alt="installer4" src="https://github.com/user-attachments/assets/f1ab3268-694d-454c-834d-c921c9b95174" />
+<img width="289" height="221" alt="installer5" src="https://github.com/user-attachments/assets/0e79b469-1212-4a46-bbc7-da64bb1231c9" />
+<img width="289" height="221" alt="installer6" src="https://github.com/user-attachments/assets/88a035b6-12b5-4bf6-9205-22b03cc0c6f6" />
 
 App on device
 
-<img width="467" height="745" alt="72c7b5da-d397-4f17-afb0-a659589b4dfe" src="https://github.com/user-attachments/assets/5aa86c8d-25dc-4034-b0ee-99aeb35cdca9" />
-<img width="459" height="735" alt="ebcb63fc-487a-4ae9-a508-8fa7a44f2afb" src="https://github.com/user-attachments/assets/be3530b1-d929-4c61-82e3-c2b75d7a66ac" />
-<img width="443" height="728" alt="b4b22fab-da13-492f-a2f4-ca55cad8b9c4" src="https://github.com/user-attachments/assets/bb345aef-ecf6-4d9e-8a35-0cf6e0b6b0e7" />
-<img width="438" height="720" alt="472054c0-34af-44cc-a421-4d3b03c8e48f" src="https://github.com/user-attachments/assets/7146f8f2-55bb-49a6-aefd-b5d38f2ab118" />
-<img width="398" height="654" alt="5566918a-42f8-43d9-85dc-2443872a2774" src="https://github.com/user-attachments/assets/b6105438-35f6-4836-9e43-58b807c09f6c" />
+<img width="467" height="745" alt="72c7b5da-d397-4f17-afb0-a659589b4dfe" src="https://github.com/user-attachments/assets/31d9d8d6-6cd0-4620-a603-b634cd3fbb60" />
+<img width="459" height="735" alt="ebcb63fc-487a-4ae9-a508-8fa7a44f2afb" src="https://github.com/user-attachments/assets/caadc61c-c8b5-42f0-812e-eef36eb03ace" />
+<img width="443" height="728" alt="b4b22fab-da13-492f-a2f4-ca55cad8b9c4" src="https://github.com/user-attachments/assets/e84b8d2f-e3be-49d3-9c29-927a36a7aaac" />
+<img width="438" height="720" alt="472054c0-34af-44cc-a421-4d3b03c8e48f" src="https://github.com/user-attachments/assets/687c5ad6-c12a-451a-9618-7ee4e3a5b584" />
+<img width="398" height="654" alt="5566918a-42f8-43d9-85dc-2443872a2774" src="https://github.com/user-attachments/assets/e2fd12c9-93ef-4380-84e1-6dfc90592fac" />
 
 ## Supported device
 
