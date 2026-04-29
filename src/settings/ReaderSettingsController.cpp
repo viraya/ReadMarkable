@@ -91,14 +91,17 @@ void ReaderSettingsController::saveGlobalDefaults()
     s.sync();
 }
 
-void ReaderSettingsController::savePerBookSetting(const QString &key, const QVariant &value)
+void ReaderSettingsController::savePerBookSetting(const QString &key, const QVariant &value, const QVariant &globalValue)
 {
     if (m_currentBookPath.isEmpty())
         return;
 
     QSettings s;
     s.beginGroup(QStringLiteral("books/") + bookKey(m_currentBookPath));
-    s.setValue(key, value);
+    if (value == globalValue)
+        s.remove(key);
+    else
+        s.setValue(key, value);
     s.endGroup();
     s.sync();
 }
@@ -258,7 +261,7 @@ void ReaderSettingsController::setFontFace(const QString &face)
         return;
 
     m_settings.fontFace = face;
-    savePerBookSetting(QStringLiteral("fontFace"), face);
+    savePerBookSetting(QStringLiteral("fontFace"), face, m_globalDefaults.fontFace);
     emit fontFaceChanged();
     emit overridesChanged();
     scheduleRelayout();
@@ -276,7 +279,7 @@ void ReaderSettingsController::setFontSize(int size)
         return;
 
     m_settings.fontSize = clamped;
-    savePerBookSetting(QStringLiteral("fontSize"), clamped);
+    savePerBookSetting(QStringLiteral("fontSize"), clamped, m_globalDefaults.fontSize);
     emit fontSizeChanged();
     emit overridesChanged();
     scheduleRelayout();
@@ -299,7 +302,7 @@ void ReaderSettingsController::setMarginPreset(int preset)
     m_settings.marginRight = MARGIN_PRESETS[preset][2];
     m_settings.marginBottom= MARGIN_PRESETS[preset][3];
 
-    savePerBookSetting(QStringLiteral("marginPreset"), preset);
+    savePerBookSetting(QStringLiteral("marginPreset"), preset, m_globalMarginPreset);
     emit marginPresetChanged();
     emit overridesChanged();
     scheduleRelayout();
@@ -321,7 +324,7 @@ void ReaderSettingsController::setLineSpacing(int percent)
         return;
 
     m_settings.lineSpacing = snapped;
-    savePerBookSetting(QStringLiteral("lineSpacing"), snapped);
+    savePerBookSetting(QStringLiteral("lineSpacing"), snapped, m_globalDefaults.lineSpacing);
     emit lineSpacingChanged();
     emit overridesChanged();
     scheduleRelayout();

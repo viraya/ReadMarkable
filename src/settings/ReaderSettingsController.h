@@ -87,7 +87,7 @@ private:
 
     static QString bookKey(const QString &bookPath);
 
-    void savePerBookSetting(const QString &key, const QVariant &value);
+    void savePerBookSetting(const QString &key, const QVariant &value, const QVariant &globalValue);
 
     void loadGlobalDefaults();
 
@@ -99,8 +99,8 @@ private:
         { 80, 100,  80, 100 },
     };
 
-    static constexpr int FONT_SIZE_MIN  = 8;
-    static constexpr int FONT_SIZE_MAX  = 36;
+    static constexpr int FONT_SIZE_MIN  = 6;
+    static constexpr int FONT_SIZE_MAX  = 72;
     static constexpr int LINE_SPACING_MIN  = 80;
     static constexpr int LINE_SPACING_MAX  = 200;
     static constexpr int LINE_SPACING_STEP = 10;
