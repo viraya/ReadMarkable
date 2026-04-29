@@ -91,7 +91,7 @@ For Linux users or anyone who prefers the command line.
 #### Steps
 
 ```bash
-VER=v1.0.0
+VER=v1.0.1
 curl -LO https://github.com/viraya/ReadMarkable/releases/download/${VER}/readmarkable-${VER}-chiappa.tar.gz
 curl -LO https://github.com/viraya/ReadMarkable/releases/download/${VER}/readmarkable-${VER}-chiappa.tar.gz.sha256
 sha256sum -c readmarkable-${VER}-chiappa.tar.gz.sha256

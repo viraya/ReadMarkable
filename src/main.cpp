@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
 
     QGuiApplication app(argc, argv);
     app.setApplicationName("ReadMarkable");
-    app.setApplicationVersion("1.0.0");
+    app.setApplicationVersion("1.0.1");
 
     qInfo() << "ReadMarkable" << app.applicationVersion() << "starting...";
     qInfo() << "Qt version:" << qVersion();
